@@ -8,7 +8,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-switch.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,900' rel='stylesheet' type='text/css'>
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/bootstrap-switch.min.js" type="text/javascript"></script>
@@ -21,57 +22,67 @@
         <div class="container lol_wrap">
             <div class="row">
                 <div class="col-md-12">
+                    <center><img src="logo.png" class="img-responsive"/></center>
                     <h1 class="lol_title">Bradley University League of Legends Tournament!<p class="lead">Sponsored by ACM - Sign up now!</p></h1>
                     <form role="form">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Team Captain's Real Name">
+                            <label class="control-label lol_formLabel" for="notification2">Team Captain's Real Name</label>
+                            <input type="email" class="form-control" id="lol_captainName" name="lol_captainName">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Team Captain's Email">
+                            <label class="control-label lol_formLabel" for="notification2">Team Captain's Email</label>
+                            <input type="email" class="form-control" id="lol_captainEmail" name="lol_captainEmail">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Team Captain's Phone">
+                            <label class="control-label lol_formLabel" for="notification2">Team Captain's Phone</label>
+                            <input type="email" class="form-control" id="lol_captainPhone" name="lol_captainPhone">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Team Name">
+                            <label class="control-label lol_formLabel" for="notification2">Team Name</label>
+                            <input type="email" class="form-control" id="lol_teamName" name="lol_teamName">
                         </div>
 
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Summoner Name 1">
+                                    <label class="control-label lol_formLabel" for="lol_sName1">Summoner Name 1</label>
+                                    <input type="email" class="form-control" id="lol_sName1" name="lol_sName1">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Summoner Name 2">
+                                    <label class="control-label lol_formLabel" for="lol_sName2">Summoner Name 2</label>
+                                    <input type="email" class="form-control" id="lol_sName2" name="lol_sName2">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Summoner Name 3">
+                                    <label class="control-label lol_formLabel" for="lol_sName3">Summoner Name 3</label>
+                                    <input type="email" class="form-control" id="lol_sName3" name="lol_sName3">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Summoner Name 4">
+                                    <label class="control-label lol_formLabel" for="lol_sName4">Summoner Name 4</label>
+                                    <input type="email" class="form-control" id="lol_sName4" name="lol_sName4">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Summoner Name 5">
+                                    <label class="control-label lol_formLabel" for="lol_sName5">Summoner Name 5</label>
+                                    <input type="email" class="form-control" id="lol_sName5" name="lol_sName5">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="lol_checkbox"><p class="lead"> I agree to the <a href="#" onclick="$('#lol_rulesModel').modal('show'); return false;">rules</a> (Seriously, read these)</p>
-                            </label>
+                        <div class="form-group">
+                            <label class="control-label lol_formLabel" for="notification2"> I agree to the <a href="#" onclick="$('#lol_rulesModel').modal('show'); return false;">rules</a> (Seriously, read these)</label>
+                            <input type="checkbox" id="lol_checkbox" data-label-text="<span class='fa fa-arrows-h fa-lg'></span>">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-success btn-lg">Sign me up!</button>
                     </form>
                     <h2>Prizes <p class="lead">(The good stuff)</p></h2>
+                    <p>After the event is complete, the top four teams in the tournament are given RP prizes. Tournament winners also receive the tournament-exclusive Triumphant Ryze skin.</p>
                 </div>
             </div>
         </div>

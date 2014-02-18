@@ -16,7 +16,7 @@ body{
 }
 
 .lol_wrap{
-    margin-top:100px;
+    margin-top:20px;
 }
 
 .lol_bgDarkener{
@@ -34,3 +34,13 @@ body{
 .lol_rulesModel{
     color:black;
 }
+
+.lol_formLabel{
+    font-size:15px;
+
+}
+/*
+.bootstrap-switch, .bootstrap-switch span, .bootstrap-switch label{
+    border-radius: 0px !important;
+}
+*/

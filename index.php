@@ -1,10 +1,110 @@
 <?php
-    if(isset($_POST['letsSubmit']) && $_POST['letsSubmit'] === "ok" ){
+    if(isset($_POST['letsSubmit']) && $_POST['letsSubmit'] === "ok"){
 
+        $lol_team = array(
+            'Captain Name'          => $_POST['lol_captainName']
+            ,'Captain Email'        => $_POST['lol_captainEmail']
+            ,'Captain Phone'        => $_POST['lol_captainPhone']
+            ,'Team Name'            => $_POST['lol_teamName']
+            ,'Summoner 1'           => $_POST['lol_sName1']
+            ,'Summoner 2'           => $_POST['lol_sName2']
+            ,'Summoner 3'           => $_POST['lol_sName3']
+            ,'Summoner 4'           => $_POST['lol_sName4']
+            ,'Summoner 5'           => $_POST['lol_sName5']
+        );
+        if(!isset($_POST['lol_checkbox'])){
+            die(json_encode(array(
+                'success' => true
+                ,'teamAdded' => false
+                ,'message' => '<p class=\'lead\'>Sorry!</p>You need to agree to the rules.'
+            )));
+        }
+        foreach($lol_team as $fieldName => $field){
+            if(strlen($field) >30 ){
+                die(json_encode(array(
+                    'success' => true
+                    ,'teamAdded' => false
+                    ,'message' => '<p class=\'lead\'>Oops!</p>'.$fieldName.' cannot be longer than 30 characters'
+                )));
+            }
 
-        echo json_encode($lol_result);
-        die();
+            if(strlen($field)<=0){
+                die(json_encode(array(
+                    'success' => true
+                    ,'teamAdded' => false
+                    ,'message' => '<p class=\'lead\'>Oops!</p>'.$fieldName.' Is required.'
+                )));
+            }
+        }
+
+        $con=mysqli_connect("localhost","root","rootaccess","lol_signup");
+
+        if (mysqli_connect_errno()){
+            //echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            die(json_encode(array(
+                'success' => true
+                ,'teamAdded' => false
+                ,'message' => '<p class=\'lead\'>Oh no!</p>Cannot connect to database.'
+            )));
+        }
+
+        $result = mysqli_query($con,
+            "INSERT INTO teams (
+                 cap_name
+                ,cap_email
+                ,cap_phone
+                ,team_name
+                ,p1
+                ,p2
+                ,p3
+                ,p4
+                ,p5
+            )
+            VALUES (
+                 '".$lol_team['Captain Name']."'
+                ,'".$lol_team['Captain Email']."'
+                ,'".$lol_team['Captain Phone']."'
+                ,'".$lol_team['Team Name']."'
+                ,'".$lol_team['Summoner 1']."'
+                ,'".$lol_team['Summoner 2']."'
+                ,'".$lol_team['Summoner 3']."'
+                ,'".$lol_team['Summoner 4']."'
+                ,'".$lol_team['Summoner 5']."'
+            )"
+        );
+
+        if($result === false){
+            if(strstr(mysqli_error($con),'Duplicate entry')){
+                die(json_encode(array(
+                    'success' => true
+                    ,'teamAdded' => false
+                    ,'message' => '<p class=\'lead\'>You\'re already signed up!</p>This captain email is already in my records.'
+                )));
+            }else{
+                die(json_encode(array(
+                    'success' => true
+                    ,'teamAdded' => false
+                    ,'message' => '<p class=\'lead\'>Gah!</p> Database Error.'
+                )));
+            }
+        }
+
+        mysqli_close($con);
+
+        die(json_encode(array(
+            'success' => true
+            ,'teamAdded' => true
+            ,'message' => '<p class=\'lead\'>Yay!</p> Your team has been registered!'
+        )));
+
     }
+    //else{
+        /*die(json_encode(array(
+            'success' => true
+            ,'teamAdded' => false
+            ,'message' => '<p class=\'lead\'>You trying to hack me?</p> The submit button post was not set, or modified."'
+        )));*/
+    //}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +133,7 @@
                     <center><img src="logo.png" class="img-responsive"/></center>
                     <div id="lol_message" class="lol_message">Hello world!</div>
                     <h1 class="lol_title">Bradley University League of Legends Tournament!<p class="lead">Sponsored by ACM - Sign up now!</p></h1>
-                    <form role="form">
+                    <form role="form" id="lol_teamForm">
                         <div class="form-group">
                             <label class="control-label lol_formLabel" for="notification2">Team Captain's Real Name</label>
                             <input type="email" class="form-control" id="lol_captainName" name="lol_captainName">
@@ -86,7 +186,7 @@
 
                         <div class="form-group">
                             <label class="control-label lol_formLabel" for="notification2"> I agree to the <a href="#" onclick="$('#lol_rulesModel').modal('show'); return false;">rules</a> (Seriously, read these)</label>
-                            <input type="checkbox" id="lol_checkbox" data-label-text="<span class='fa fa-arrows-h fa-lg'></span>">
+                            <input type="checkbox" id="lol_checkbox" name="lol_checkbox" data-label-text="<span class='fa fa-arrows-h fa-lg'></span>">
                         </div>
                         <input type="hidden" name="letsSubmit" value="ok" />
                         <button type="submit" class="btn btn-success btn-lg" onclick="lol_submit(); return false;">Sign me up!</button>

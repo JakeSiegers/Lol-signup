@@ -12,17 +12,23 @@ $(function(){
 
 function lol_submit(){
     lol_closeMessage("#lol_message");
+    //console.log($('#lol_teamForm').serializeArray());
     $.ajax({
         url:""
         ,type:'post'
-        ,data:$('#searchByIdForm').serializeArray()
+        ,data:$('#lol_teamForm').serializeArray()
         ,dataType:"json"
         ,timeout:10000
         ,success:function(reply){ //html request succeed?
             if(reply.success){
-                window.location.href = "http://jakewebdev/assetmanager/index.php/asset/edit/"+reply.data.asset_id;
+                if(reply.teamAdded){
+                    lol_showHappyMessage(reply.message);
+                }else{
+                    lol_showErrorMessage(reply.message);
+                }
+            }else{
+                lol_showErrorMessage("<p class='lead'>Whoops!</p> It appears sonething went wrong...");
             }
-            //lol_setFormErrorColors(reply.failed_fields);
         }
         ,error:function(obj,error){
             lol_showErrorMessage("<p class='lead'>Whoops!</p> It appears sonething went wrong...");
@@ -37,7 +43,7 @@ function lol_showErrorMessage(messageContent,messageBoxId){
     if(boxId === false){
         box = $('#lol_message');
         closeParam = '#lol_message';
-        $('html, body').animate({scrollTop:0}, 'slow');
+        $('html, body').animate({scrollTop:0}, 500);
     }else{
         box = $(messageBoxId);
         closeParam = messageBoxId;
@@ -55,12 +61,12 @@ function lol_showHappyMessage(messageContent,messageBoxId){
     if(boxId === false){
         box = $('#lol_message');
         closeParam = '#lol_message';
-        $('html, body').animate({scrollTop:0}, 'slow');
+        $('html, body').animate({scrollTop:0}, 500);
     }else{
         box = $(messageBoxId);
         closeParam = messageBoxId;
     }
-    box.html('<div class="alert alert-success" ><button type="button" class="close" onclick="lol_closeMessage(\''+closeParam+'\')">&times;</button>'+messageContent+'</div>');
+    box.html('<div class="alert alert-success" id="lol_messageInner"><button type="button" class="close" onclick="lol_closeMessage(\''+closeParam+'\')">&times;</button>'+messageContent+'</div>');
     box.animate({
         opacity:1
         ,height:$("#lol_messageInner").outerHeight()+"px"
@@ -77,5 +83,5 @@ function lol_closeMessage(messageBoxId){
         opacity:0
         ,height:"0px"
 
-    },500);
+    },0);
 }

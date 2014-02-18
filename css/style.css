@@ -39,6 +39,12 @@ body{
     font-size:15px;
 
 }
+
+.lol_message{
+    opacity: 0;
+    filter:alpha(opacity=0);
+    height:0px;
+}
 /*
 .bootstrap-switch, .bootstrap-switch span, .bootstrap-switch label{
     border-radius: 0px !important;

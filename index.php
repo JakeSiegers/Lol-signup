@@ -1,3 +1,11 @@
+<?php
+    if(isset($_POST['letsSubmit']) && $_POST['letsSubmit'] === "ok" ){
+
+
+        echo json_encode($lol_result);
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +31,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><img src="logo.png" class="img-responsive"/></center>
+                    <div id="lol_message" class="lol_message">Hello world!</div>
                     <h1 class="lol_title">Bradley University League of Legends Tournament!<p class="lead">Sponsored by ACM - Sign up now!</p></h1>
                     <form role="form">
                         <div class="form-group">
@@ -79,7 +88,8 @@
                             <label class="control-label lol_formLabel" for="notification2"> I agree to the <a href="#" onclick="$('#lol_rulesModel').modal('show'); return false;">rules</a> (Seriously, read these)</label>
                             <input type="checkbox" id="lol_checkbox" data-label-text="<span class='fa fa-arrows-h fa-lg'></span>">
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg">Sign me up!</button>
+                        <input type="hidden" name="letsSubmit" value="ok" />
+                        <button type="submit" class="btn btn-success btn-lg" onclick="lol_submit(); return false;">Sign me up!</button>
                     </form>
                     <h2>Prizes <p class="lead">(The good stuff)</p></h2>
                     <p>After the event is complete, the top four teams in the tournament are given RP prizes. Tournament winners also receive the tournament-exclusive Triumphant Ryze skin.</p>

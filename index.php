@@ -206,7 +206,7 @@
                         <ul>
                             <li>All players must abide by Riot's summoner code.</li>
                             <li>All teams must pay $25 admission fee on day of tournament.</li>
-                            <li>All players may bring their own gaming equipment, i.e. Laptops, Headsets, etc. (And we really suggest you do)</li>
+                            <li>All players may bring their own gaming equipment, i.e. Laptops, Headsets, etc. (And we really suggest you do)
                                 <ul>
                                     <li>However - If they don't, they <strong>must</strong> use the provided equipment.</li>
                                     <li>We cannot guarantee ethernet cables, so please bring your own if you want to be assured a wired connection.</li>

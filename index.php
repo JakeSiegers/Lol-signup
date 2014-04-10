@@ -1,4 +1,7 @@
 <?php
+    require_once('DbPasswords.php');
+    $db = new DbPasswords('local');
+
     if(isset($_POST['letsSubmit']) && $_POST['letsSubmit'] === "ok"){
 
         $lol_team = array(
@@ -20,6 +23,7 @@
             )));
         }
         foreach($lol_team as $fieldName => $field){
+            $lol_team[$fieldName] = addslashes($lol_team[$fieldName]);
             if(strlen($field) >30 ){
                 die(json_encode(array(
                     'success' => true
@@ -37,7 +41,7 @@
             }
         }
 
-        $con=mysqli_connect("localhost","root","rootaccess","lol_signup");
+        $con=mysqli_connect($db->get('hostname'),$db->get('username'),$db->get('password'),$db->get('database'));
 
         if (mysqli_connect_errno()){
             //echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -191,10 +195,9 @@
                         <input type="hidden" name="letsSubmit" value="ok" />
                         <button type="submit" class="btn btn-success btn-lg" onclick="lol_submit(); return false;">Sign me up!</button>
                     </form>
-
                     <h2>Prizes <p class="lead">(The good stuff)</p></h2>
-                    <p>After the event is complete, the top four teams in the tournament are given RP prizes. Tournament winners also receive the tournament-exclusive Triumphant Ryze skin.</p>
-                    <h2>Prizes <p class="lead">(The good stuff)</p></h2>
+                    <p>There will be a cash prize of $10 per player for the winning team. Each winning team member will also receive the tournament-exclusive Triumphant Ryze skin.<br />The top four teams in the tournament will be given RP prizes as well.</p>
+                	<h2>ACM on Facebook<p class="lead"><a href="https://www.facebook.com/events/520700601381656/">Check out our Facebook event!</a></p></h2>
                 </div>
             </div>
         </div>
@@ -205,7 +208,7 @@
                     <div class="modal-body">
                         <p class="lead">The Rules</p>
                         These are the rules. If something is not clear, please email (JrMorris@mail.bradley.edu), or speak with Jordan Morris at the event. <strong>HIS WORD IS FINAL</strong>
-                        <ul>
+                        <!--<ul>
                             <li>All players must abide by Riot's summoner code.</li>
                             <li>All teams must pay $25 admission fee on day of tournament.</li>
                             <li>All players may bring their own gaming equipment, i.e. Laptops, Headsets, etc. (And we really suggest you do)
@@ -215,7 +218,15 @@
                                 </ul>
                             </li>
                             <li><strong>All players</strong> on a team must be present at the tournament location when playing.</li>
-                        </ul>
+                        </ul>-->
+						<ol>
+                        	<li>$5 fee per team member paid the day of the tournament in cash, a.k.a. $25 per team ($7 fee per member if you register the day of the tournament).</li>
+							<li>Teams of 5. All team members must be physically present at the tournament to participate. They do not have to be Bradley Students.</li>
+							<li>Each player must own 16 champions (free week champions count).</li>
+							<li>Up until the semi-finals, all rounds will consist of one game, winner moves on. The semi-finals and finals will be best out of 3 games. There will be a consolation bracket as well, so every team will get to play at least 2 games. All games are draft pick.</li>
+							<li>We highly recommend you bring your own computer and Ethernet cable if you desire a wired connection. Lab computers will be available for use at your own risk, we are not responsible for their performance. </li>
+							<li>All players must abide by Riot's summoner code.</li>
+						</ol>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Alright, I'm good.</button>

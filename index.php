@@ -191,8 +191,10 @@
                         <input type="hidden" name="letsSubmit" value="ok" />
                         <button type="submit" class="btn btn-success btn-lg" onclick="lol_submit(); return false;">Sign me up!</button>
                     </form>
+
                     <h2>Prizes <p class="lead">(The good stuff)</p></h2>
                     <p>After the event is complete, the top four teams in the tournament are given RP prizes. Tournament winners also receive the tournament-exclusive Triumphant Ryze skin.</p>
+                    <h2>Prizes <p class="lead">(The good stuff)</p></h2>
                 </div>
             </div>
         </div>

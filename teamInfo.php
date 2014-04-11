@@ -27,23 +27,29 @@ class TeamInfo{
 	        	$summoners[str_replace(' ','',strtolower($row['p'.$i]))]=array('team'=>$row['team_name']);
 	        }
 	    }
+	    //echo count($summoners);
 		mysqli_close($con);
 		$summonersToPop = array_keys($summoners);
+		//echo count($summonersToPop);
 		while(count($summonersToPop)>0){
 			$summonersToCheck = array();
 			for($i=0;$i<40;$i++){
 				if(count($summonersToPop)>0){
-					$summonersToCheck[]=array_pop($summonersToPop);
+					$next=array_shift($summonersToPop);
+					$summonersToCheck[]=$next;
+					//echo $i.' = '.$next.'<br />';
 				}
 			}
 			$checkedSummonersResults = $this->api->getSummoners($summonersToCheck);
 			if(!is_null($checkedSummonersResults['data'])){
 				foreach($checkedSummonersResults['data'] as $summonerName => $summonerData){
-					$summoners[$summonerName]['id'] = $summonerData['id'];
-					$summoners[$summonerName]['name'] = $summonerData['name'];
-					$summoners[$summonerName]['level'] = $summonerData['summonerLevel'];
-					$summoners[$summonerName]['rank'] = $this->checkRankCache($summonerData['name'],$summonerData['id']);
-					//$summoners[$summonerName]['rawdata'] = $summonerData;
+					if(isset($summoners[$summonerName])){
+						$summoners[$summonerName]['id'] = $summonerData['id'];
+						$summoners[$summonerName]['name'] = $summonerData['name'];
+						$summoners[$summonerName]['level'] = $summonerData['summonerLevel'];
+						$summoners[$summonerName]['rank'] = $this->checkRankCache($summonerData['name'],$summonerData['id']);
+						//$summoners[$summonerName]['rawdata'] = $summonerData;
+					}
 				}
 			}
 		}
@@ -91,8 +97,9 @@ class TeamInfo{
 $obj = new TeamInfo();
 
 $allsummoners = $obj->getTeamSummonerStats();
+//echo '<pre>';
 //var_dump($allsummoners);
-
+//echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html>
@@ -126,24 +133,27 @@ echo '<table>';
 echo '<tr>';
 echo '<th>#</th>';
 echo '<th>Name</th>';
+echo '<th>Team</th>';
 echo '<th>Level</th>';
 echo '<th>Tier</th>';
 echo '<th>Rank</th>';
 echo '</tr>';
-$count = 1;
+$count = 0;
 foreach($allsummoners as $summonerName => $summoner){
 	echo '<tr>';
 
 	echo '<td>';
-		echo $count;
 		$count++;
+		echo $count;
+		
 	echo '</td>';
 
 
 	echo '<td>';
-	if(isset($summoner["name"])){
-		echo $summoner["name"];
-	}
+	//if(isset($summoner["name"])){
+		//echo $summoner["name"];
+	//}
+	echo $summonerName;
 	echo '</td>';
 
 	echo '<td>';
@@ -204,6 +214,7 @@ foreach($allsummoners as $summonerName => $summoner){
 	echo'</tr>';
 }
 echo '</table>';
+echo 'There are '.($count/5).' Teams Signed Up!'
 ?>
 </body>
 </html>

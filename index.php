@@ -1,6 +1,6 @@
 <?php
     require_once('DbPasswords.php');
-    $db = new DbPasswords('local');
+    $db = new DbPasswords('live');
 
     if(isset($_POST['letsSubmit']) && $_POST['letsSubmit'] === "ok"){
 

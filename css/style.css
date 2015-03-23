@@ -1,52 +1,103 @@
 html {
-    overflow: -moz-scrollbars-vertical;
-    overflow: scroll;
+    overflow-y: scroll;
 }
-
 body{
-    background: url(../bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding:0;
-    margin:0;
-    color:white;
-    font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-weight:400;
+	background: url(../img/bg4.jpg) center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin:0px;
+	padding:0px;
+}
+a,a:visited{
+	color:black;
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: none;
+	color:rgb(126, 239, 104)
+}
+.lol_content{
+	display:block;
+	color:black;
+	font-size:15px;
+	padding:10px;
+	border:solid 2px white;
+	margin-bottom:30px;
+}
+.lol_title{
+	font-weight:900;
+	color:white;
+	font-size:30px;
+	text-align:left;
+	margin-top:10px;
+}
+.lol_formField{
+	font-family: 'Roboto', sans-serif;
+	color:white;
+	border:solid 2px white;
+	border-radius:0px;
+}
+.lol_button,.lol_button:active,.lol_button:focus{
+	background:rgba(255,255,255,0.5);
+	border:0;
+	border-radius:0px;
+	color:black;
+}
+.lol_button:hover{
+	background:rgba(255,255,255,0.1);
+	cursor: pointer;
+}
+.lol_blur{
+	background: url(../img/bg4-blur.jpg) center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.lol_white{
+	background:rgba(255,255,255,0.5);
 }
 
-.lol_wrap{
-    margin-top:20px;
+.lol_emailErrorMessage{
+	margin-top: 20px;
+	padding:5px;
+	color:#a94442;
+	border:solid 3px #a94442;;
+	text-align: left;
+	background:rgba(255,255,255,0.5);
+}
+.lol_emailHappyMessage{
+	margin-top: 20px;
+	padding:5px;
+	color:green;
+	border:solid 3px green;
+	text-align: left;
+	background:rgba(255,255,255,0.5);
 }
 
-.lol_bgDarkener{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:#333333;
-    opacity: 0.7;
-    filter:alpha(opacity=70);
-    z-index:-1000;
+input:focus,textarea:focus,select:focus{
+	border-color: white !important;
+	box-shadow: none !important;
+	/*border-color: rgb(126, 239, 104) !important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+	outline: 0 none !important;*/
 }
 
-.lol_rulesModel{
-    color:black;
+::-webkit-input-placeholder { /* WebKit browsers */
+	color:rgba(255, 255, 255, 0.8) !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:rgba(255, 255, 255, 0.8) !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:rgba(255, 255, 255, 0.8) !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color:rgba(255, 255, 255, 0.8) !important;
 }
 
-.lol_formLabel{
-    font-size:15px;
 
-}
-
-.lol_message{
-    opacity: 0;
-    filter:alpha(opacity=0);
-    height:0px;
-}
-/*
-.bootstrap-switch, .bootstrap-switch span, .bootstrap-switch label{
-    border-radius: 0px !important;
-}
-*/

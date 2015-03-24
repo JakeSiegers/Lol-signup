@@ -4,7 +4,7 @@ html {
 body{
 	font-family: 'Roboto', sans-serif;
 	font-weight:400;
-	background: url(../img/bg4.jpg) center center fixed;
+	background: url(../img/bg.jpg) center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -52,7 +52,7 @@ a:hover{
 	cursor: pointer;
 }
 .lol_blur{
-	background: url(../img/bg4-blur.jpg) center center fixed;
+	background: url(../img/bg-blur.jpg) center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -98,6 +98,25 @@ input:focus,textarea:focus,select:focus{
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
 	color:rgba(255, 255, 255, 0.8) !important;
+}
+
+.nav-tabs li a{
+	border-radius: 0;
+	color:white;
+	font-size: 20px;
+	font-weight:bold;
+	text-decoration: none;
+	border:3px solid white;
+	margin-bottom:-3px;
+}
+.nav-tabs li a:hover,
+.nav-tabs li a:focus,
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus{
+	color:black;
+	border:3px solid white;
+	background:rgba(255,255,255,0.5);
 }
 
 

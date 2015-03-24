@@ -3,7 +3,7 @@
 
 	class lolsignup{
 		function __construct(){
-			if(false === $this->db = new pdo_helper($_SERVER['DOCUMENT_ROOT'].'/inc/credentials/mysql_lolsignups.php')){
+			if(false === $this->db = new pdo_helper($_SERVER['DOCUMENT_ROOT'].'/inc/db/credentials/mysql_lolsignups.php')){
 				$this->dieAndJSON(array(
 					'success' => true
 					,'teamAdded' => false
@@ -32,7 +32,7 @@
 
 		}*/
 
-		private validateFields($lolPostVars){
+		private function validateFields($lolPostVars){
 
 			$this->fieldErrors = array();
 			$this->fieldErrorMsg = "";
@@ -54,6 +54,12 @@
 					$this->fieldErrors[] = $postName;
 					continue;
 				}
+
+				if($postName == 'lol_soloEmail' && !filter_var($_POST['lol_soloEmail'], FILTER_VALIDATE_EMAIL)){
+					$this->fieldErrorMsg.="Please use a valid email in the '".$fieldName."' field!<br />";
+					$this->fieldErrors[] = $postName;
+					continue;
+				}
 				$databaseInput[$fieldName] = $_POST[$postName];
 			}
 
@@ -67,7 +73,7 @@
 		function submitTeam(){
 
 			$lolPostVars = array(
-				'Team Name'		=> 'databaseInputName'
+				'Team Name'				=> 'lol_teamName'
 				,'Team Leader\'s Name'	=> 'lol_captainName'
 				,'Team Leader\'s Email'	=> 'lol_captainEmail'
 				,'Team Leader\'s Phone'	=> 'lol_captainPhone'
@@ -78,7 +84,7 @@
 				,'Summoner 5'			=> 'lol_sName5'
 			);
 
-			$databaseInput = validateFields($lolPostVars);
+			$databaseInput = $this->validateFields($lolPostVars);
 
 			if(strlen($this->fieldErrorMsg)>0){
 				$this->dieAndJSON(array(
@@ -94,7 +100,7 @@
 					$this->dieAndJSON(array(
 						'success' => true
 						,'teamAdded' => false
-						,'message' => '<p class=\'lead\'><b>You\'re already signed up!</b></p>This captain email is already in my records.'
+						,'message' => '<p class=\'lead\'><b>You\'re already signed up!</b></p>This email is already in my team records.'
 					));
 				}else{
 					$this->dieAndJSON(array(
@@ -115,11 +121,13 @@
 		function submitSolo(){
 
 			$lolPostVars = array(
-				,'Name'	=> 'lol_captainName'
-				,'Email'	=> 'lol_captainEmail'
-				,'Phone'	=> 'lol_captainPhone'
+				'Name'	=> 'lol_soloName'
+				,'Email'	=> 'lol_soloEmail'
+				,'Phone'	=> 'lol_soloPhone'
 				,'Summoner Name'		=> 'lol_sName'
 			);
+
+			$databaseInput = $this->validateFields($lolPostVars);
 
 			if(strlen($this->fieldErrorMsg)>0){
 				$this->dieAndJSON(array(
@@ -130,12 +138,12 @@
 				));
 			}
 
-			if(false === $this->db->query("INSERT INTO signedupdsolos(soloName,soloPhone,soloEmail,p1) VALUES (?,?,?,?)",array_values($databaseInput))){
+			if(false === $output = $this->db->query("INSERT INTO signedupsolos(soloName,soloEmail,soloPhone,p1) VALUES (?,?,?,?)",array_values($databaseInput))){
 				if(strstr($this->db->lastError(),'Duplicate entry')){
 					$this->dieAndJSON(array(
 						'success' => true
 						,'teamAdded' => false
-						,'message' => '<p class=\'lead\'><b>You\'re already signed up!</b></p>This captain email is already in my records.'
+						,'message' => '<p class=\'lead\'><b>You\'re already signed up!</b></p>This email is already in my solo records.'
 					));
 				}else{
 					$this->dieAndJSON(array(
@@ -149,7 +157,7 @@
 			$this->dieAndJSON(array(
 				'success' => true
 				,'teamAdded' => true
-				,'message' => '<p class=\'lead\'><b>Yay!</b></p> Your team has been registered!'
+				,'message' => '<p class=\'lead\'><b>Yay!</b></p> You have been registered!'
 			));
 		}
 	}

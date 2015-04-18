@@ -9,8 +9,7 @@
 	</head>
 	<body>
 		<form action="/lolsignup/viewSignUps" method="post">
-			Password?
-			<input type="text">
+			<input name="viewSignupsPassword" type="text" placeholder="Password?">
 			<input type="submit">
 		</form>
 	</body>

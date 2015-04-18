@@ -181,19 +181,16 @@
 				,'p1' => 'Summoner Name'
 			);
 
-			$sql = "SELECT "+implode(",",array_keys($soloHeaders))+" FROM signedupsolos";
-			var_dump($sql);
-			die();
-			if(false === $solos = $this->db->query($sql)){
+			if(false === $solos = $this->db->query("SELECT ".implode(",",array_keys($soloHeaders))." FROM signedupsolos")){
 				echo $this->db->lastError();
 				die('Failed to load solos');
 			}
 
-			$soloTable = "<table><tr><td>"+implode("</td><td>",array_values($soloHeaders))+"</td></tr>";
+			$soloTable = "<table><tr><td>".implode("</td><td>",array_values($soloHeaders))."</td></tr>";
 			foreach($solos as $row){
 				$soloTable .= "<tr>";
 				foreach(array_keys($soloHeaders) as $col){
-					$soloTable .= "<td>"+$row[$col]+"</td>";
+					$soloTable .= "<td>".$row[$col]."</td>";
 				}
 				$soloTable .= "</tr>";
 			}
@@ -211,15 +208,15 @@
 				,'p5' => 'Summoner 5'
 			);
 
-			if(false === $teams = $this->db->query("SELECT "+implode(",",array_keys($teamHeaders))+" FROM signedupteams")){
+			if(false === $teams = $this->db->query("SELECT ".implode(",",array_keys($teamHeaders))." FROM signedupteams")){
 				die('Failed to load teams');
 			}
 
-			$teamTable = "<table><tr><td>"+implode("</td><td>",array_values($teamHeaders))+"</td></tr>";
+			$teamTable = "<table><tr><td>".implode("</td><td>",array_values($teamHeaders))."</td></tr>";
 			foreach($teams as $row){
 				$teamTable .= "<tr>";
 				foreach(array_keys($teamHeaders) as $col){
-					$teamTable .= "<td>"+$row[$col]+"</td>";
+					$teamTable .= "<td>".$row[$col]."</td>";
 				}
 				$teamTable .= "</tr>";
 			}

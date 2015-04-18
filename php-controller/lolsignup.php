@@ -165,13 +165,14 @@
 		function viewSignUps(){
 			require_once($_SERVER['DOCUMENT_ROOT'].'/lolsignup/config.php');
 			if(!isset($config)){
-				die('No Config Found');
+
+				die('No Config Found, returning... <meta http-equiv="refresh" content="1;url=http://jakeisa.ninja/lolsignup/view.php">');
 			}
 			if(!isset($_POST['viewSignupsPassword'])){
-				die('Missing Password');
+				die('Missing Password, returning... <meta http-equiv="refresh" content="1;url=http://jakeisa.ninja/lolsignup/view.php">');
 			}
 			if($_POST['viewSignupsPassword'] !== $config['viewSignupsPassword']){
-				die('Password is incorrect');
+				die('Password is incorrect, returning... <meta http-equiv="refresh" content="1;url=http://jakeisa.ninja/lolsignup/view.php">');
 			}
 
 			$soloHeaders = array(

@@ -8,7 +8,10 @@
 		<script src="/inc/js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<form action="">
+		<form action="/lolsignup/viewSignUps" method="post">
+			Password?
+			<input type="text">
+			<input type="submit">
 		</form>
 	</body>
 </html>

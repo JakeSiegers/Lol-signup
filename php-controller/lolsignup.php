@@ -189,6 +189,8 @@
 			$soloTable = "<table><tr><td>".implode("</td><td>",array_values($soloHeaders))."</td></tr>";
 			$solosArray = $this->db->fetch_assoc();
 			foreach($solosArray as $row){
+				var_dump($row);
+				die();
 				$soloTable .= "<tr>";
 				foreach(array_keys($soloHeaders) as $col){
 					$soloTable .= "<td>".$row[$col]."</td>";

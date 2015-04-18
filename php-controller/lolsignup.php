@@ -186,14 +186,16 @@
 				die('Failed to load solos');
 			}
 
-			$soloTable = "<table><tr><td>".implode("</td><td>",array_values($soloHeaders))."</td></tr>";
+			$soloTable = "<table><tr><th>".implode("</th><th>",array_values($soloHeaders))."</th></tr>";
 			$solosArray = $this->db->fetch_all_assoc();
+			$alt = false;
 			foreach($solosArray as $row){
 				$soloTable .= "<tr>";
 				foreach(array_keys($soloHeaders) as $col){
-					$soloTable .= "<td>".$row[$col]."</td>";
+					$soloTable .= "<td ".($alt?'class="alt"':'').">".$row[$col]."</td>";
 				}
 				$soloTable .= "</tr>";
+				$alt = !$alt;
 			}
 			$soloTable .= "</table>";
 
@@ -213,20 +215,22 @@
 				die('Failed to load teams');
 			}
 
-			$teamTable = "<table><tr><td>".implode("</td><td>",array_values($teamHeaders))."</td></tr>";
+			$teamTable = "<table><tr><th>".implode("</th><th>",array_values($teamHeaders))."</th></tr>";
 			$teamsArray = $this->db->fetch_all_assoc();
+			$alt = false;
 			foreach($teamsArray as $row){
 				$teamTable .= "<tr>";
 				foreach(array_keys($teamHeaders) as $col){
-					$teamTable .= "<td>".$row[$col]."</td>";
+					$teamTable .= "<td ".($alt?'class="alt"':'').">".$row[$col]."</td>";
 				}
 				$teamTable .= "</tr>";
+				$alt = !$alt;
 			}
 			$teamTable .= "</table>";
 			echo '
 				<style>
 					table{
-						border:solid 1px black;
+						border-collapse: collapse;
 					}
 					td{
 						border:solid 1px black;

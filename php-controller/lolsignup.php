@@ -234,12 +234,15 @@
 					}
 					td{
 						border:solid 1px black;
+						padding:5px;
 					}
 					th{
+						padding:5px;
 						font-weight:bold;
+						text-align:left
 					}
 					.alt{
-						background:rgba(0,255,0,0.1);
+						background:rgba(0,255,0,0.5);
 					}
 				</style>
 			';

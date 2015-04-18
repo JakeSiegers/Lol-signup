@@ -13,6 +13,7 @@
 				"--exclude=project-files/",
 				"--exclude=.gitignore/",
 				"--exclude=.git/",
+				"--exclude=config.php",
 				".",
 				//I assume this won't change. If it does, the build will stop. I feel better putting a absolute URL instead of relative one.
 				"u43111589@jakesiegers.com:/kunden/homepages/13/d185963174/htdocs/jakeisa.ninja/lolsignup/"

@@ -181,7 +181,10 @@
 				,'p1' => 'Summoner Name'
 			);
 
-			if(false === $solos = $this->db->query("SELECT "+implode(",",array_keys($soloHeaders))+" FROM signedupsolos")){
+			$sql = "SELECT "+implode(",",array_keys($soloHeaders))+" FROM signedupsolos";
+			var_dump($sql);
+			die();
+			if(false === $solos = $this->db->query($sql)){
 				echo $this->db->lastError();
 				die('Failed to load solos');
 			}

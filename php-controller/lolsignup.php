@@ -187,7 +187,7 @@
 			}
 
 			$soloTable = "<table><tr><td>".implode("</td><td>",array_values($soloHeaders))."</td></tr>";
-			$solosArray = $this->db->fetch_assoc();
+			$solosArray = $this->db->fetch_all_assoc();
 			foreach($solosArray as $row){
 				var_dump($row);
 				die();
@@ -216,7 +216,7 @@
 			}
 
 			$teamTable = "<table><tr><td>".implode("</td><td>",array_values($teamHeaders))."</td></tr>";
-			$teamsArray = $this->db->fetch_assoc();
+			$teamsArray = $this->db->fetch_all_assoc();
 			foreach($teamsArray as $row){
 				$teamTable .= "<tr>";
 				foreach(array_keys($teamHeaders) as $col){

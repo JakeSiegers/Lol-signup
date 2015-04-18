@@ -163,7 +163,7 @@
 
 		//Basic Function to view the results. Nothing Fancy Here!
 		function viewSignUps(){
-			require_once('../config.php');
+			require_once($_SERVER['DOCUMENT_ROOT'].'/lolsignup/config.php');
 			if(!isset($config)){
 				die('No Config Found');
 			}

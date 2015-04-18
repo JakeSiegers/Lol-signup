@@ -182,6 +182,7 @@
 			);
 
 			if(false === $solos = $this->db->query("SELECT "+implode(",",array_keys($soloHeaders))+" FROM signedupsolos")){
+				echo $this->db->lastError();
 				die('Failed to load solos');
 			}
 

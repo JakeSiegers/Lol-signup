@@ -223,7 +223,22 @@
 				$teamTable .= "</tr>";
 			}
 			$teamTable .= "</table>";
-
+			echo '
+				<style>
+					table{
+						border:solid 1px black;
+					}
+					td{
+						border:solid 1px black;
+					}
+					th{
+						font-weight:bold;
+					}
+					.alt{
+						background:rgba(0,255,0,0.1);
+					}
+				</style>
+			';
 			echo "<h1>Solos</h1>".$soloTable."<h1>Teams</h1>".$teamTable;
 		}
 	}

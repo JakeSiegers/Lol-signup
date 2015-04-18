@@ -160,6 +160,68 @@
 				,'message' => '<p class=\'lead\'><b>Yay!</b></p> You have been registered!'
 			));
 		}
-	}
 
+		//Basic Function to view the results. Nothing Fancy Here!
+		function viewSignUps(){
+			require_once('../config.php');
+			if(!isset($config)){
+				die('No Config Found');
+			}
+			if(!isset($_POST['viewSignupsPassword'])){
+				die('Missing Password');
+			}
+			if($_POST['viewSignupsPassword'] !== $config['viewSignupsPassword']){
+				die('Password is incorrect');
+			}
+
+			$soloHeaders = array(
+				 'soloName' => 'Name'
+				,'soloEmail' => 'Email'
+				,'soloPhone' => 'Phone'
+				,'p1' => 'Summoner Name'
+			);
+
+			if(false === $solos = $this->db->query("SELECT "+implode(",",array_keys($soloHeaders))+" FROM signedupsolos")){
+				die('Failed to load solos');
+			}
+
+			$soloTable = "<table><tr><td>"+implode("</td><td>",array_values($soloHeaders))+"</td></tr>";
+			foreach($solos as $row){
+				$soloTable .= "<tr>";
+				foreach(array_keys($soloHeaders) as $col){
+					$soloTable .= "<td>"+$row[$col]+"</td>";
+				}
+				$soloTable .= "</tr>";
+			}
+			$soloTable .= "</table>";
+
+			$teamHeaders = array(
+				'teamName' => 'Team Name'
+				,'teamLeadName' => 'Team Leader'
+				,'teamLeadEmail' => 'Leader Email'
+				,'teamLeadPhone' => 'Leader Phone'
+				,'p1' => 'Summoner 1'
+				,'p2' => 'Summoner 2'
+				,'p3' => 'Summoner 3'
+				,'p4' => 'Summoner 4'
+				,'p5' => 'Summoner 5'
+			);
+
+			if(false === $teams = $this->db->query("SELECT "+implode(",",array_keys($teamHeaders))+" FROM signedupteams")){
+				die('Failed to load teams');
+			}
+
+			$teamTable = "<table><tr><td>"+implode("</td><td>",array_values($teamHeaders))+"</td></tr>";
+			foreach($teams as $row){
+				$teamTable .= "<tr>";
+				foreach(array_keys($teamHeaders) as $col){
+					$teamTable .= "<td>"+$row[$col]+"</td>";
+				}
+				$teamTable .= "</tr>";
+			}
+			$teamTable .= "</table>";
+
+			echo "<h1>Solos</h1>".$soloTable."<h1>Teams</h1>".$teamTable;
+		}
+	}
 ?>

@@ -5,12 +5,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Bradley University ACM League Tournament Sign Up</title>
-		<link href="/inc/css/bootstrap/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,900' rel='stylesheet' type='text/css'>
-		<link href="/inc/css/font-awesome/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/font-awesome/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
-		<script src="/inc/js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-		<script src="/inc/js/bootstrap/bootstrap-3.2.0-dist/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap/bootstrap-3.2.0-dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/functions.js" type="text/javascript"></script>
 	</head>
 	<body>
